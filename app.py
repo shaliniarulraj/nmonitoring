@@ -10,14 +10,14 @@ from collections import defaultdict
 from flask_cors import CORS
 from pymongo import MongoClient
 import os
+app = Flask(__name__)
+CORS(app)
+
 
 # Cloud MongoDB connection
 MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017/')
 client = MongoClient(MONGODB_URI)
 collection = client['network_monitor']['packets']
-app = Flask(__name__)
-CORS(app)
-
 
 
 
@@ -155,3 +155,6 @@ def email_log():
         alert["anomaly_type"] = classify_anomaly(alert)
 
     return jsonify(alerts)
+if __name__ == '__main__':
+    port = int(os.getenv('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
