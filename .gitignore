@@ -1,0 +1,18 @@
+# Capacitor / Mobile
+node_modules/
+android/
+ios/
+capacitor.config.json
+
+# Build outputs
+*.apk
+*.aab
+*.keystore
+keystore.properties
+
+# Environment
+.env
+*.log
+
+# Railway
+.railway/
